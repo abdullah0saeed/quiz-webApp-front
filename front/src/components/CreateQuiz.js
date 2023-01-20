@@ -1,3 +1,4 @@
+import { json } from "body-parser";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -40,8 +41,9 @@ export default function CreateQuiz() {
 
   //function to add the last question to the quiz array then send the quiz to the database
   const submit = async () => {
+    setQuiz([...quiz, { q, a, corrA, b, corrB, c, corrC, d, corrD }]);
+    console.log(JSON.stringify(quiz));
     try {
-      setQuiz([...quiz, { q, a, corrA, b, corrB, c, corrC, d, corrD }]);
       const res = await fetch(`${globalState.api.link}/quizes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

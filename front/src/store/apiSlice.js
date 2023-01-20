@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { link: "" };
+const initialState = { link: "http://localhost:7000" };
 
 const apiSlice = createSlice({
   name: "apiAdress",
