@@ -91,9 +91,9 @@ export default function Score() {
         <>
           <div className="row mb-3">
             <div className="col"></div>
-            <div className="col-2 fs-3 text-center fw-bold">Score</div>
+            <div className="col-sm-2 col-5 fs-3 text-center fw-bold">Score</div>
             <div
-              className="col-1 fs-3 text-center rounded-3 fw-bold"
+              className="col-sm-2 col-4 fs-3 text-center rounded-3 fw-bold"
               style={{ backgroundColor: "#ddd" }}
             >
               {quiz.q.length - score + " / " + quiz.q.length}
@@ -104,9 +104,9 @@ export default function Score() {
       )}
       {/* button to show the right and wrong answers  */}
       <div className="row">
-        <div className="col"></div>
+        <div className="col-sm-4 col-1"></div>
         <div
-          className="col-4 btn btn-warning fs-5 fw-bold"
+          className="col-sm-4 col-10 btn btn-warning fs-5 fw-bold"
           onClick={() => {
             var wrong = 0;
             for (let i = 0; i < quiz?.q?.length; i++) {

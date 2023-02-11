@@ -255,8 +255,8 @@ export default function TakeQuiz() {
       {/* to take the quiz ID */}
       <div className="row">
         <div className="col-3"></div>
-        <div className="col-2 fs-4 fw-bold">Quiz ID </div>
-        <div className="col-3 fs-5">
+        <div className="col-sm-2 col-12 fs-4 fw-bold">Quiz ID </div>
+        <div className="col-sm-3 col-12 fs-5">
           <input
             type={"text"}
             style={{ width: "100%", borderWidth: "1.5px" }}
@@ -269,7 +269,7 @@ export default function TakeQuiz() {
         <div className="col-4"></div>
         <div className="row ">
           <div className="col"></div>
-          <div className="col-4 d-flex justify-content-center">
+          <div className="col-sm-4 col-12 d-flex justify-content-center">
             <div
               className="btn btn-success mt-5  fs-5 fw-bolder"
               style={{ width: "80%" }}

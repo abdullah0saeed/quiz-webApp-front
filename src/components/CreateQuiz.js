@@ -113,8 +113,8 @@ export default function CreateQuiz() {
       </Helmet>
       {/* add the Question */}
       <div className="row m-3">
-        <div className="col text-center fs-4 fw-bold">Question</div>
-        <div className="col-10 d-flex">
+        <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Question</div>
+        <div className="col-sm-10 col-12 d-flex">
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
             value={inQ}
@@ -126,7 +126,7 @@ export default function CreateQuiz() {
       </div>
       {/* add answers */}
       <div className="row m-3">
-        <div className="col-2 text-center fs-4 fw-bold">Answers</div>
+        <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Answers</div>
         <div className="col d-flex">
           a-
           <textarea
@@ -170,7 +170,7 @@ export default function CreateQuiz() {
       </div>
       {/* choose the correct answer */}
       <div className="row m-3">
-        <div className="col text-center "></div>
+        <div className="col-0 col-sm-2 text-center "></div>
         <div className="col d-flex justify-content-start ">
           <select
             style={{
@@ -244,7 +244,7 @@ export default function CreateQuiz() {
       <div className="row m-3 mt-5 mb-4">
         <div className="col" />
         <div
-          className="col-4 btn btn-warning  fs-5 fw-bold"
+          className="col-sm-4 col-12 btn btn-warning  fs-5 fw-bold"
           onClick={addQuestion}
         >
           Add Question
@@ -255,7 +255,7 @@ export default function CreateQuiz() {
       <div className="row mb-3 mt-5">
         <div className="col" />
         <div
-          className="col-2 btn btn-danger  fs-5 fw-bold m-1"
+          className="col-sm-2 col-10 btn btn-danger  fs-5 fw-bold m-1"
           style={{ color: "#000" }}
           onClick={(e) => {
             submit();
@@ -266,7 +266,7 @@ export default function CreateQuiz() {
           Submit Quiz
         </div>
         <div
-          className="col-2 btn btn-dark fs-5 fw-bold m-1"
+          className="col-sm-2 col-10 btn btn-dark fs-5 fw-bold m-1"
           onClick={() => {
             navigate("/");
           }}
@@ -278,7 +278,7 @@ export default function CreateQuiz() {
       {/* to show the quiz id */}
       <div className="row mt-3">
         <div className="col"></div>
-        <div className="col-8">
+        <div className="col-sm-8 col-12">
           {status === 1 && (
             <div
               className="alert alert-success fw-bolder text-center"

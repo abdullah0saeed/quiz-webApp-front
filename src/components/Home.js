@@ -5,7 +5,7 @@ export default function Home() {
     <div style={{ marginTop: "10%" }}>
       <div className="row  m-3">
         <div className="col "></div>
-        <div className="col-6 d-flex justify-content-center ">
+        <div className="col-sm-6 col-12 d-flex justify-content-center ">
           <button
             className="btn btn-primary fs-3"
             style={{ width: "100%" }}
@@ -20,7 +20,7 @@ export default function Home() {
       </div>
       <div className="row   m-3">
         <div className="col "></div>
-        <div className="col-6 d-flex justify-content-center ">
+        <div className="col-sm-6 col-12 d-flex justify-content-center ">
           <button
             className="btn btn-primary fs-3"
             style={{ width: "100%" }}
