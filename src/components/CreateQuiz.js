@@ -257,7 +257,11 @@ export default function CreateQuiz() {
         <div
           className="col-2 btn btn-danger  fs-5 fw-bold m-1"
           style={{ color: "#000" }}
-          onClick={submit}
+          onClick={(e) => {
+            submit();
+            e.target.innerHTML = "wait for ID";
+            e.target.style.backgroundColor = "#aaa";
+          }}
         >
           Submit Quiz
         </div>
@@ -275,32 +279,13 @@ export default function CreateQuiz() {
       <div className="row mt-3">
         <div className="col"></div>
         <div className="col-8">
-          {status === -1 && (
-            <div
-              className="alert alert-success fw-bolder text-center"
-              role={alert}
-              style={{ color: "#000" }}
-            >
-              wait...
-            </div>
-          )}
           {status === 1 && (
             <div
               className="alert alert-success fw-bolder text-center"
               role={alert}
               style={{ color: "#000" }}
             >
-              Quiz ID: {quizId}
-              {/* button to go back to home */}
-              <div
-                className="btn btn-dark ms-5  fs-5"
-                style={{ width: "20%" }}
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                Back
-              </div>
+              Quiz ID :--> {quizId}
             </div>
           )}
         </div>
