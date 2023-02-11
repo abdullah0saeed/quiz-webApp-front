@@ -1,55 +1,94 @@
-import { json } from "body-parser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateQuiz() {
+  const navigate = useNavigate();
+
   //define global state
   const globalState = useSelector((state) => state);
+
+  /////to store the data to be sent to db\\\\\\\\
   //to store the question
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState([]);
 
   //to store the answers
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
-  const [c, setC] = useState("");
-  const [d, setD] = useState("");
+  const [a, setA] = useState([]);
+  const [b, setB] = useState([]);
+  const [c, setC] = useState([]);
+  const [d, setD] = useState([]);
 
   //to store the correct answer
-  const [corrA, setCorrA] = useState("false");
-  const [corrB, setCorrB] = useState("false");
-  const [corrC, setCorrC] = useState("false");
-  const [corrD, setCorrD] = useState("false");
+  const [corrA, setCorrA] = useState([]);
+  const [corrB, setCorrB] = useState([]);
+  const [corrC, setCorrC] = useState([]);
+  const [corrD, setCorrD] = useState([]);
 
-  //array to store all questions with answers
-  const [quiz, setQuiz] = useState([]);
+  ///////to hold the input data\\\\\\
+  //to store the question
+  const [inQ, setInQ] = useState("");
+
+  //to store the answers
+  const [inA, setInA] = useState("");
+  const [inB, setInB] = useState("");
+  const [inC, setInC] = useState("");
+  const [inD, setInD] = useState("");
+
+  //to store the correct answer
+  const [corrInA, setCorrInA] = useState("false");
+  const [corrInB, setCorrInB] = useState("false");
+  const [corrInC, setCorrInC] = useState("false");
+  const [corrInD, setCorrInD] = useState("false");
 
   //function to add a question to the quiz array
-  const addQuestion = () => {
-    setQuiz([...quiz, { q, a, corrA, b, corrB, c, corrC, d, corrD }]);
-    setQ("");
-    setA("");
-    setB("");
-    setC("");
-    setD("");
-    setCorrA("false");
-    setCorrB("false");
-    setCorrC("false");
-    setCorrD("false");
-    console.log(quiz);
+  const addQuestion = async () => {
+    setQ([...q, inQ]);
+    setA([...a, inA]);
+    setB([...b, inB]);
+    setC([...c, inC]);
+    setD([...d, inD]);
+    setCorrA([...corrA, corrInA]);
+    setCorrB([...corrB, corrInB]);
+    setCorrC([...corrC, corrInC]);
+    setCorrD([...corrD, corrInD]);
+    setInQ("");
+    setInA("");
+    setInB("");
+    setInC("");
+    setInD("");
+    setCorrInA("false");
+    setCorrInB("false");
+    setCorrInC("false");
+    setCorrInD("false");
   };
 
-  //function to add the last question to the quiz array then send the quiz to the database
+  ////function to add the last question to the quiz array then send the quiz to the database
+
+  //to store the fetch response status
+  const [status, setStatus] = useState(0);
+
+  //to store Quiz ID
+  const [quizId, setQuizId] = useState(0);
+
   const submit = async () => {
-    setQuiz([...quiz, { q, a, corrA, b, corrB, c, corrC, d, corrD }]);
-    console.log(JSON.stringify(quiz));
+    const data = { q, a, b, c, d, corrA, corrB, corrC, corrD };
+    console.log(data);
+
     try {
       const res = await fetch(`${globalState.api.link}/quizes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(quiz),
+        body: JSON.stringify(data),
       });
-      console.log(res);
+      //to retrieve the quiz id
+      const resJson = await res.json();
+      setQuizId(resJson.id);
+      if (res.status !== 200) {
+        setStatus(-1);
+      } else {
+        setStatus(1);
+      }
     } catch (error) {
       console.log("error: ", error);
     }
@@ -58,7 +97,7 @@ export default function CreateQuiz() {
   return (
     <div
       style={{
-        marginTop: "5%",
+        marginTop: "4%",
         marginRight: "1%",
         marginLeft: "1%",
         borderRadius: "5%",
@@ -78,9 +117,9 @@ export default function CreateQuiz() {
         <div className="col-10 d-flex">
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
-            value={q}
+            value={inQ}
             onChange={(e) => {
-              setQ(e.target.value);
+              setInQ(e.target.value);
             }}
           />
         </div>
@@ -92,9 +131,9 @@ export default function CreateQuiz() {
           a-
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
-            value={a}
+            value={inA}
             onChange={(e) => {
-              setA(e.target.value);
+              setInA(e.target.value);
             }}
           />
         </div>
@@ -102,9 +141,9 @@ export default function CreateQuiz() {
           b-
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
-            value={b}
+            value={inB}
             onChange={(e) => {
-              setB(e.target.value);
+              setInB(e.target.value);
             }}
           />
         </div>
@@ -112,9 +151,9 @@ export default function CreateQuiz() {
           c-
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
-            value={c}
+            value={inC}
             onChange={(e) => {
-              setC(e.target.value);
+              setInC(e.target.value);
             }}
           />
         </div>
@@ -122,9 +161,9 @@ export default function CreateQuiz() {
           d-
           <textarea
             style={{ width: "90%", padding: "0.5%" }}
-            value={d}
+            value={inD}
             onChange={(e) => {
-              setD(e.target.value);
+              setInD(e.target.value);
             }}
           />
         </div>
@@ -140,9 +179,9 @@ export default function CreateQuiz() {
               textAlign: "center",
               fontSize: "110%",
             }}
-            value={corrA}
+            value={corrInA}
             onChange={(e) => {
-              setCorrA(e.target.value);
+              setCorrInA(e.target.value);
             }}
           >
             <option>false</option>
@@ -157,9 +196,9 @@ export default function CreateQuiz() {
               textAlign: "center",
               fontSize: "110%",
             }}
-            value={corrB}
+            value={corrInB}
             onChange={(e) => {
-              setCorrB(e.target.value);
+              setCorrInB(e.target.value);
             }}
           >
             <option>false</option>
@@ -174,9 +213,9 @@ export default function CreateQuiz() {
               textAlign: "center",
               fontSize: "110%",
             }}
-            value={corrC}
+            value={corrInC}
             onChange={(e) => {
-              setCorrC(e.target.value);
+              setCorrInC(e.target.value);
             }}
           >
             <option>false</option>
@@ -191,9 +230,9 @@ export default function CreateQuiz() {
               textAlign: "center",
               fontSize: "110%",
             }}
-            value={corrD}
+            value={corrInD}
             onChange={(e) => {
-              setCorrD(e.target.value);
+              setCorrInD(e.target.value);
             }}
           >
             <option>false</option>
@@ -202,27 +241,70 @@ export default function CreateQuiz() {
         </div>
       </div>
       {/* button to add a new question to the quiz  */}
-      <div className="row m-3 mt-5">
+      <div className="row m-3 mt-5 mb-4">
         <div className="col" />
         <div
           className="col-4 btn btn-warning  fs-5 fw-bold"
           onClick={addQuestion}
         >
-          Add new Question
+          Add Question
         </div>
         <div className="col" />
       </div>
       {/* button to submit questions and send them to database*/}
-      <div className="row m-3">
+      <div className="row mb-3 mt-5">
         <div className="col" />
         <div
-          className="col-6 btn btn-danger  fs-5 fw-bold"
+          className="col-2 btn btn-danger  fs-5 fw-bold m-1"
           style={{ color: "#000" }}
           onClick={submit}
         >
           Submit Quiz
         </div>
+        <div
+          className="col-2 btn btn-dark fs-5 fw-bold m-1"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Back
+        </div>
         <div className="col" />
+      </div>
+      {/* to show the quiz id */}
+      <div className="row mt-3">
+        <div className="col"></div>
+        <div className="col-8">
+          {status === -1 && (
+            <div
+              className="alert alert-success fw-bolder text-center"
+              role={alert}
+              style={{ color: "#000" }}
+            >
+              wait...
+            </div>
+          )}
+          {status === 1 && (
+            <div
+              className="alert alert-success fw-bolder text-center"
+              role={alert}
+              style={{ color: "#000" }}
+            >
+              Quiz ID: {quizId}
+              {/* button to go back to home */}
+              <div
+                className="btn btn-dark ms-5  fs-5"
+                style={{ width: "20%" }}
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Back
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="col"></div>
       </div>
     </div>
   );

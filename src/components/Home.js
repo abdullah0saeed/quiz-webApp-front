@@ -21,7 +21,13 @@ export default function Home() {
       <div className="row   m-3">
         <div className="col "></div>
         <div className="col-6 d-flex justify-content-center ">
-          <button className="btn btn-primary fs-3" style={{ width: "100%" }}>
+          <button
+            className="btn btn-primary fs-3"
+            style={{ width: "100%" }}
+            onClick={() => {
+              navigate("/take");
+            }}
+          >
             Take Quiz
           </button>
         </div>
