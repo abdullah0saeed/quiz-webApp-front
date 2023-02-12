@@ -119,53 +119,111 @@ export default function Score() {
                 wrong = wrong + 1;
 
                 if (quiz.corrB[i] === "true") {
-                  document.getElementById(`b${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`b${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrC[i] === "true") {
-                  document.getElementById(`c${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`c${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrD[i] === "true") {
-                  document.getElementById(`d${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`d${i}`)
+                    ?.classList.add("bg-secondary");
                 }
               }
+
               if (chosenB[i] === "true" && quiz.corrB[i] === "true") {
                 document.getElementById(`b${i}`)?.classList.add("bg-success");
               } else if (chosenB[i] === "true" && quiz.corrB[i] !== "true") {
                 document.getElementById(`b${i}`)?.classList.add("bg-danger");
                 wrong = wrong + 1;
                 if (quiz.corrA[i] === "true") {
-                  document.getElementById(`a${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`a${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrC[i] === "true") {
-                  document.getElementById(`c${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`c${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrD[i] === "true") {
-                  document.getElementById(`d${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`d${i}`)
+                    ?.classList.add("bg-secondary");
                 }
               }
+
               if (chosenC[i] === "true" && quiz.corrC[i] === "true") {
                 document.getElementById(`c${i}`)?.classList.add("bg-success");
               } else if (chosenC[i] === "true" && quiz.corrC[i] !== "true") {
                 document.getElementById(`c${i}`)?.classList.add("bg-danger");
                 wrong = wrong + 1;
                 if (quiz.corrB[i] === "true") {
-                  document.getElementById(`b${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`b${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrA[i] === "true") {
-                  document.getElementById(`a${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`a${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrD[i] === "true") {
-                  document.getElementById(`d${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`d${i}`)
+                    ?.classList.add("bg-secondary");
                 }
               }
+
               if (chosenD[i] === "true" && quiz.corrD[i] === "true") {
                 document.getElementById(`d${i}`)?.classList.add("bg-success");
               } else if (chosenD[i] === "true" && quiz.corrD[i] !== "true") {
                 document.getElementById(`d${i}`)?.classList.add("bg-danger");
                 wrong = wrong + 1;
                 if (quiz.corrB[i] === "true") {
-                  document.getElementById(`b${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`b${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrC[i] === "true") {
-                  document.getElementById(`c${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`c${i}`)
+                    ?.classList.add("bg-secondary");
                 } else if (quiz.corrA[i] === "true") {
-                  document.getElementById(`a${i}`)?.classList.add("bg-success");
+                  document
+                    .getElementById(`a${i}`)
+                    ?.classList.add("bg-secondary");
                 }
               }
             }
+
+            //if no choice has been done
+            for (let i = 0; i < quiz?.q?.length; i++) {
+              if (
+                chosenA[i] !== "true" &&
+                chosenB[i] !== "true" &&
+                chosenC[i] !== "true" &&
+                chosenD[i] !== "true"
+              ) {
+                wrong = wrong + 1;
+
+                if (quiz.corrA[i] === "true") {
+                  document
+                    .getElementById(`a${i}`)
+                    ?.classList.add("bg-secondary");
+                } else if (quiz.corrB[i] === "true") {
+                  document
+                    .getElementById(`b${i}`)
+                    ?.classList.add("bg-secondary");
+                } else if (quiz.corrC[i] === "true") {
+                  document
+                    .getElementById(`c${i}`)
+                    ?.classList.add("bg-secondary");
+                } else if (quiz.corrD[i] === "true") {
+                  document
+                    .getElementById(`d${i}`)
+                    ?.classList.add("bg-secondary");
+                }
+              }
+            }
+
             setScore(wrong);
             setShow(true);
           }}
