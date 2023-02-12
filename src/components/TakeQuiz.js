@@ -49,7 +49,7 @@ export default function TakeQuiz() {
       row.push(
         <div style={{ borderBottomStyle: "solid" }} key={i}>
           <div className="row mb-2">
-            <div className="col-12 fs-4 fw-bold">
+            <div className="col-12 fs-4 fw-bold mt-1">
               {i + 1 + "- " + quiz.q[i]}
             </div>
           </div>
@@ -265,6 +265,15 @@ export default function TakeQuiz() {
             value={id}
             onChange={(e) => {
               setId(e.target.value);
+              if (id !== "") {
+                document.getElementById("start-btn").innerHTML = "Start";
+                document
+                  .getElementById("start-btn")
+                  .classList.remove("btn-secondary");
+                document
+                  .getElementById("start-btn")
+                  .classList.add("btn-success");
+              }
             }}
           />
         </div>
@@ -274,18 +283,25 @@ export default function TakeQuiz() {
           <div className="col-sm-4 col-12 d-flex justify-content-center">
             <div
               className="btn btn-success mt-5  fs-5 fw-bolder"
+              id="start-btn"
               style={{ width: "80%" }}
-              onClick={() => {
-                getQuiz();
-                quizView();
-                setShow(true);
+              onClick={(e) => {
+                if (id === "") {
+                  e.target.innerHTML = "ID can't be empty";
+                  e.target.classList.remove("btn-success");
+                  e.target.classList.add("btn-secondary");
+                } else {
+                  getQuiz();
+                  quizView();
+                  setShow(true);
+                }
               }}
             >
               Start
             </div>
           </div>
           <div className="col"></div>
-          {show && (
+          {show && id !== "" && (
             <>
               <div>{view}</div>
               <div className="row mt-3">

@@ -28,7 +28,7 @@ export default function Score() {
       row.push(
         <div style={{ borderBottomStyle: "solid" }} key={i}>
           <div className="row mb-2">
-            <div className="col-12 fs-4 fw-bold">
+            <div className="col-12 fs-4 fw-bold mt-1">
               {i + 1 + "- " + quiz.q[i]}
             </div>
           </div>
