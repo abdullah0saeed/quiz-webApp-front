@@ -127,40 +127,40 @@ export default function CreateQuiz() {
       {/* add answers */}
       <div className="row m-3">
         <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Answers</div>
-        <div className="col d-flex">
+        <div className="col-sm-2 col-12 d-flex mt-1">
           a-
           <textarea
-            style={{ width: "90%", padding: "0.5%" }}
+            style={{ width: "95%", padding: "0.5%" }}
             value={inA}
             onChange={(e) => {
               setInA(e.target.value);
             }}
           />
         </div>
-        <div className="col d-flex">
+        <div className="col-sm-2 col-12 d-flex mt-1">
           b-
           <textarea
-            style={{ width: "90%", padding: "0.5%" }}
+            style={{ width: "95%", padding: "0.5%" }}
             value={inB}
             onChange={(e) => {
               setInB(e.target.value);
             }}
           />
         </div>
-        <div className="col d-flex">
+        <div className="col-sm-2 col-12 d-flex mt-1">
           c-
           <textarea
-            style={{ width: "90%", padding: "0.5%" }}
+            style={{ width: "95%", padding: "0.5%" }}
             value={inC}
             onChange={(e) => {
               setInC(e.target.value);
             }}
           />
         </div>
-        <div className="col d-flex">
+        <div className="col-sm-2 col-12 d-flex mt-1">
           d-
           <textarea
-            style={{ width: "90%", padding: "0.5%" }}
+            style={{ width: "95%", padding: "0.5%" }}
             value={inD}
             onChange={(e) => {
               setInD(e.target.value);
@@ -171,7 +171,8 @@ export default function CreateQuiz() {
       {/* choose the correct answer */}
       <div className="row m-3">
         <div className="col-0 col-sm-2 text-center "></div>
-        <div className="col d-flex justify-content-start ">
+        <div className="col-sm-2 col-12 d-flex justify-content-start mt-1">
+          a-
           <select
             style={{
               width: "70%",
@@ -188,7 +189,8 @@ export default function CreateQuiz() {
             <option>true</option>
           </select>
         </div>
-        <div className="col d-flex justify-content-start">
+        <div className="col-sm-2 col-12 d-flex justify-content-start mt-1">
+          b-
           <select
             style={{
               width: "70%",
@@ -205,7 +207,8 @@ export default function CreateQuiz() {
             <option>true</option>
           </select>
         </div>
-        <div className="col d-flex justify-content-start">
+        <div className="col-sm-2 col-12 d-flex justify-content-start mt-1">
+          c-
           <select
             style={{
               width: "70%",
@@ -222,7 +225,8 @@ export default function CreateQuiz() {
             <option>true</option>
           </select>
         </div>
-        <div className="col d-flex justify-content-start">
+        <div className="col-sm-2 col-12 d-flex justify-content-start mt-1">
+          d-
           <select
             style={{
               width: "70%",

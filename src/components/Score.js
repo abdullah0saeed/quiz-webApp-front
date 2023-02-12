@@ -28,41 +28,43 @@ export default function Score() {
       row.push(
         <div style={{ borderBottomStyle: "solid" }} key={i}>
           <div className="row mb-2">
-            <div className="col-12 fs-4 fw-bold">{quiz.q[i]}</div>
+            <div className="col-12 fs-4 fw-bold">
+              {i + 1 + "- " + quiz.q[i]}
+            </div>
           </div>
           <div className="row mb-2">
             <div
-              className="btn-group"
+              className="btn-group-vertical"
               role="group"
               aria-label="Basic outlined example"
             >
               <button
                 type="button"
                 id={`a${i}`}
-                className="btn btn-outline-primary text-black fw-bold"
+                className="btn btn-outline-primary text-black fw-bold text-start"
               >
-                {quiz.a[i]}
+                {"a) " + quiz.a[i]}
               </button>
               <button
                 type="button"
                 id={`b${i}`}
-                className="btn btn-outline-primary text-black fw-bold"
+                className="btn btn-outline-primary text-black fw-bold text-start"
               >
-                {quiz.b[i]}
+                {"b) " + quiz.b[i]}
               </button>
               <button
                 type="button"
                 id={`c${i}`}
-                className="btn btn-outline-primary text-black fw-bold"
+                className="btn btn-outline-primary text-black fw-bold text-start"
               >
-                {quiz.c[i]}
+                {"c) " + quiz.c[i]}
               </button>
               <button
                 type="button"
                 id={`d${i}`}
-                className="btn btn-outline-primary text-black fw-bold"
+                className="btn btn-outline-primary text-black fw-bold text-start"
               >
-                {quiz.d[i]}
+                {"d) " + quiz.d[i]}
               </button>
             </div>
           </div>
