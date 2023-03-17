@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -100,19 +100,19 @@ export default function CreateQuiz() {
         marginTop: "4%",
         marginRight: "1%",
         marginLeft: "1%",
-        borderRadius: "5%",
+        borderRadius: "30px",
         padding: "3%",
         backgroundColor: "#fff",
-        borderStyle: "solid",
-        borderWidth: "1px",
-        boxShadow: "10px 10px 7px",
+        // borderStyle: "solid",
+        // borderWidth: "1px",
+        boxShadow: "3px 3px 8px",
       }}
     >
       <Helmet>
         <style>{"body { background-color: #fff }"}</style>
       </Helmet>
       {/* add the Question */}
-      <div className="row m-3">
+      <div className="row m-3 p-1">
         <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Question</div>
         <div className="col-sm-10 col-12 d-flex">
           <textarea
@@ -125,7 +125,7 @@ export default function CreateQuiz() {
         </div>
       </div>
       {/* add answers */}
-      <div className="row m-3">
+      <div className="row m-3 p-1">
         <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Answers</div>
         <div className="col-sm-2 col-12 d-flex mt-1">
           a-
@@ -169,7 +169,7 @@ export default function CreateQuiz() {
         </div>
       </div>
       {/* choose the correct answer */}
-      <div className="row m-3">
+      <div className="row m-3 p-1">
         <div className="col-0 col-sm-2 text-center "></div>
         <div className="col-sm-2 col-12 d-flex justify-content-start mt-1">
           a-

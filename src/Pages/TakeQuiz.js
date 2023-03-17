@@ -246,12 +246,12 @@ export default function TakeQuiz() {
         marginTop: "0.5%",
         marginRight: "1%",
         marginLeft: "1%",
-        borderRadius: "5%",
+        borderRadius: "30",
         padding: "3%",
-        backgroundColor: "#fff",
-        borderStyle: "solid",
-        borderWidth: "1px",
-        boxShadow: "10px 10px 7px",
+        // backgroundColor: "#eee",
+        // borderStyle: "solid",
+        // borderWidth: "1px",
+        // boxShadow: "5px 5px 10px",
       }}
     >
       {/* to take the quiz ID */}
