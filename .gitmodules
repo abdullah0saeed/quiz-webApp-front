@@ -1,0 +1,3 @@
+[submodule "myModules"]
+	path = myModules
+	url = https://github.com/abdullah0saeed/myModules
