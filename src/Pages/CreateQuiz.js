@@ -298,8 +298,8 @@ export default function CreateQuiz() {
             </label>
             <div className="col-sm-4 col-8 d-flex justify-content-sm-start ">
               <input
-                className=" text-center fs-5 w-90"
-                placeholder="optional"
+                className=" text-center fs-5 w-100"
+                placeholder="optional(used when editing)"
                 type="text"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
