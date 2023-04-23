@@ -3,13 +3,16 @@ import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { colors } from "../config";
+import { disableBtn } from "../myModules";
+
 export default function CreateQuiz() {
   const navigate = useNavigate();
 
   //define global state
   const globalState = useSelector((state) => state);
 
-  /////to store the data to be sent to db\\\\\\\\
+  ///to store the data to be sent to db\\\\\\\\
   //to store the question
   const [q, setQ] = useState([]);
 
@@ -41,6 +44,11 @@ export default function CreateQuiz() {
   const [corrInC, setCorrInC] = useState("false");
   const [corrInD, setCorrInD] = useState("false");
 
+  //to store password used to edit
+  const [password, setPassword] = useState("");
+  //to view the password input
+  const [submitClicked, setSumitClicked] = useState(false);
+
   //function to add a question to the quiz array
   const addQuestion = async () => {
     setQ([...q, inQ]);
@@ -63,7 +71,7 @@ export default function CreateQuiz() {
     setCorrInD("false");
   };
 
-  ////function to add the last question to the quiz array then send the quiz to the database
+  //function to add the last question to the quiz array then send the quiz to the database
 
   //to store the fetch response status
   const [status, setStatus] = useState(0);
@@ -72,8 +80,7 @@ export default function CreateQuiz() {
   const [quizId, setQuizId] = useState(0);
 
   const submit = async () => {
-    const data = { q, a, b, c, d, corrA, corrB, corrC, corrD };
-    console.log(data);
+    const data = { q, a, b, c, d, corrA, corrB, corrC, corrD, password };
 
     try {
       const res = await fetch(`${globalState.api.link}/quizes`, {
@@ -259,12 +266,13 @@ export default function CreateQuiz() {
       <div className="row mb-3 mt-5">
         <div className="col" />
         <div
+          id="submitBtn"
           className="col-sm-2 col-10 btn btn-danger  fs-5 fw-bold m-1"
           style={{ color: "#000" }}
           onClick={(e) => {
-            submit();
-            e.target.innerHTML = "wait for ID";
-            e.target.style.backgroundColor = "#aaa";
+            // submit();
+            disableBtn(e.target, "set password");
+            setSumitClicked(true);
           }}
         >
           Submit Quiz
@@ -279,6 +287,37 @@ export default function CreateQuiz() {
         </div>
         <div className="col" />
       </div>
+
+      {/* show view to set a quiz password */}
+      {submitClicked && (
+        <div className="row mt-4">
+          <div className="col-sm-10 col-12 d-flex justify-content-center align-items-center row">
+            <div className="col-sm-2 col-0"></div>
+            <label className="col-sm-3 d-flex justify-content-sm-end fs-4">
+              password:
+            </label>
+            <div className="col-sm-4 col-8 d-flex justify-content-sm-start ">
+              <input
+                className=" text-center fs-5 w-90"
+                placeholder="optional"
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button
+              className="col-sm-2 btn btn-info fs-5 fw-bold"
+              onClick={(e) => {
+                submit();
+                disableBtn(e.target, "wait for ID");
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* to show the quiz id */}
       <div className="row mt-3">
         <div className="col"></div>
@@ -290,6 +329,8 @@ export default function CreateQuiz() {
               style={{ color: "#000" }}
             >
               Quiz ID :--> {quizId}
+              <br />
+              Password :--> {password}
             </div>
           )}
         </div>
