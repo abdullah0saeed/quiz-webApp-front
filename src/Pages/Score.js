@@ -81,12 +81,8 @@ export default function Score() {
         marginTop: "0.5%",
         marginRight: "1%",
         marginLeft: "1%",
-        // borderRadius: "5%",
         padding: "3%",
         backgroundColor: "#fff",
-        // borderStyle: "solid",
-        // borderWidth: "1px",
-        // boxShadow: "10px 10px 7px",
       }}
     >
       {show && (

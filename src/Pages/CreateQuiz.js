@@ -296,7 +296,7 @@ export default function CreateQuiz() {
             <label className="col-sm-3 d-flex justify-content-sm-end fs-4">
               password:
             </label>
-            <div className="col-sm-4 col-8 d-flex justify-content-sm-start ">
+            <div className="col-sm-4 col-12 mb-sm-0 mb-2 d-flex justify-content-sm-start ">
               <input
                 className=" text-center fs-5 w-100"
                 placeholder="optional(used when editing)"
@@ -306,13 +306,13 @@ export default function CreateQuiz() {
               />
             </div>
             <button
-              className="col-sm-2 btn btn-info fs-5 fw-bold"
+              className="col-sm-2 col-6 btn btn-info fs-5 fw-bold"
               onClick={(e) => {
                 submit();
                 disableBtn(e.target, "wait for ID");
               }}
             >
-              OK
+              Finish
             </button>
           </div>
         </div>

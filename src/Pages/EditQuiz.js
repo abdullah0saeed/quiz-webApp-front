@@ -148,6 +148,10 @@ export default function EditQuiz() {
                     id={`q${i}`}
                     value={question}
                     className="col-11 fs-5"
+                    onChange={(e) => {
+                      quiz.q[i] = `${e.target.value}`;
+                      setRender(!render);
+                    }}
                   />
                 </div>
                 <div className="row d-flex justify-content-center align-items-center">
@@ -157,6 +161,10 @@ export default function EditQuiz() {
                     id={`a${i}`}
                     value={quiz.a[i]}
                     className="col-10 fs-5"
+                    onChange={(e) => {
+                      quiz.a[i] = `${e.target.value}`;
+                      setRender(!render);
+                    }}
                   />
                   <input
                     type="checkbox"
@@ -175,6 +183,10 @@ export default function EditQuiz() {
                     id={`b${i}`}
                     value={quiz.b[i]}
                     className="col-10 fs-5"
+                    onChange={(e) => {
+                      quiz.b[i] = `${e.target.value}`;
+                      setRender(!render);
+                    }}
                   />
                   <input
                     type="checkbox"
@@ -193,6 +205,10 @@ export default function EditQuiz() {
                     id={`c${i}`}
                     value={quiz.c[i]}
                     className="col-10 fs-5"
+                    onChange={(e) => {
+                      quiz.c[i] = `${e.target.value}`;
+                      setRender(!render);
+                    }}
                   />
                   <input
                     type="checkbox"
@@ -211,6 +227,10 @@ export default function EditQuiz() {
                     id={`d${i}`}
                     value={quiz.d[i]}
                     className="col-10 fs-5"
+                    onChange={(e) => {
+                      quiz.d[i] = `${e.target.value}`;
+                      setRender(!render);
+                    }}
                   />
                   <input
                     type="checkbox"
