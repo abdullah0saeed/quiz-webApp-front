@@ -1,8 +1,10 @@
 //module to edit and change background color and innerText of a button
 
+import { colors } from "../../config";
+
 function disableBtn(btn, text = "wait...") {
   btn.innerText = text;
-  btn.style.backgroundColor = "#777";
+  btn.style.backgroundColor = colors.grey.medium;
   btn.style.cursor = "default";
 }
 

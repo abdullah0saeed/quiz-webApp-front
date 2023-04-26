@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import "../config/classes.css";
+
 export default function Score() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -109,83 +111,91 @@ export default function Score() {
             var wrong = 0;
             for (let i = 0; i < quiz?.q?.length; i++) {
               if (chosenA[i] === "true" && quiz.corrA[i] === "true") {
-                document.getElementById(`a${i}`)?.classList.add("bg-success");
+                document
+                  .getElementById(`a${i}`)
+                  ?.classList.add("bg_green_light");
               } else if (chosenA[i] === "true" && quiz.corrA[i] !== "true") {
-                document.getElementById(`a${i}`)?.classList.add("bg-danger");
+                document.getElementById(`a${i}`)?.classList.add("bg_red_light");
                 wrong = wrong + 1;
 
                 if (quiz.corrB[i] === "true") {
                   document
                     .getElementById(`b${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrC[i] === "true") {
                   document
                     .getElementById(`c${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrD[i] === "true") {
                   document
                     .getElementById(`d${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 }
               }
 
               if (chosenB[i] === "true" && quiz.corrB[i] === "true") {
-                document.getElementById(`b${i}`)?.classList.add("bg-success");
+                document
+                  .getElementById(`b${i}`)
+                  ?.classList.add("bg_green_light");
               } else if (chosenB[i] === "true" && quiz.corrB[i] !== "true") {
-                document.getElementById(`b${i}`)?.classList.add("bg-danger");
+                document.getElementById(`b${i}`)?.classList.add("bg_red_light");
                 wrong = wrong + 1;
                 if (quiz.corrA[i] === "true") {
                   document
                     .getElementById(`a${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrC[i] === "true") {
                   document
                     .getElementById(`c${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrD[i] === "true") {
                   document
                     .getElementById(`d${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 }
               }
 
               if (chosenC[i] === "true" && quiz.corrC[i] === "true") {
-                document.getElementById(`c${i}`)?.classList.add("bg-success");
+                document
+                  .getElementById(`c${i}`)
+                  ?.classList.add("bg_green_light");
               } else if (chosenC[i] === "true" && quiz.corrC[i] !== "true") {
-                document.getElementById(`c${i}`)?.classList.add("bg-danger");
+                document.getElementById(`c${i}`)?.classList.add("bg_red_light");
                 wrong = wrong + 1;
                 if (quiz.corrB[i] === "true") {
                   document
                     .getElementById(`b${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrA[i] === "true") {
                   document
                     .getElementById(`a${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrD[i] === "true") {
                   document
                     .getElementById(`d${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 }
               }
 
               if (chosenD[i] === "true" && quiz.corrD[i] === "true") {
-                document.getElementById(`d${i}`)?.classList.add("bg-success");
+                document
+                  .getElementById(`d${i}`)
+                  ?.classList.add("bg_green_light");
               } else if (chosenD[i] === "true" && quiz.corrD[i] !== "true") {
-                document.getElementById(`d${i}`)?.classList.add("bg-danger");
+                document.getElementById(`d${i}`)?.classList.add("bg_red_light");
                 wrong = wrong + 1;
                 if (quiz.corrB[i] === "true") {
                   document
                     .getElementById(`b${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrC[i] === "true") {
                   document
                     .getElementById(`c${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrA[i] === "true") {
                   document
                     .getElementById(`a${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 }
               }
             }
@@ -203,19 +213,19 @@ export default function Score() {
                 if (quiz.corrA[i] === "true") {
                   document
                     .getElementById(`a${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrB[i] === "true") {
                   document
                     .getElementById(`b${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrC[i] === "true") {
                   document
                     .getElementById(`c${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 } else if (quiz.corrD[i] === "true") {
                   document
                     .getElementById(`d${i}`)
-                    ?.classList.add("bg-secondary");
+                    ?.classList.add("bg_grey_light");
                 }
               }
             }
