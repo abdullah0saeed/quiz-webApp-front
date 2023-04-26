@@ -294,11 +294,13 @@ export default function TakeQuiz() {
                   setId(e.target.value);
                 }}
                 onMouseEnter={() => {
-                  enableBtn(
-                    document.getElementById("start-btn"),
-                    "Start",
-                    colors.green.success
-                  );
+                  if (id === "") {
+                    enableBtn(
+                      document.getElementById("start-btn"),
+                      "Start",
+                      colors.green.success
+                    );
+                  }
                 }}
               />
             </div>
@@ -325,6 +327,17 @@ export default function TakeQuiz() {
                   }}
                 >
                   Start
+                </div>
+              </div>
+              <div className="col-sm-4 col-12 d-flex justify-content-center">
+                <div
+                  className="btn btn-danger mt-5  fs-5 fw-bolder"
+                  style={{ width: "80%" }}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                >
+                  Back
                 </div>
               </div>
               <div className="col"></div>
