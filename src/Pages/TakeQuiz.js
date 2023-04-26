@@ -1,13 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+
+import { setMessage } from "../store/variablesSlice";
+
+import { disableBtn, enableBtn } from "../myModules";
+import { colors } from "../config";
+import Alert from "../Components/Alert";
 
 export default function TakeQuiz() {
   const navigate = useNavigate();
 
   //define global state
   const globalState = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  //to re-render whenever needed
+  const [render, setRender] = useState(false);
 
   //to store the required quiz ID
   const [id, setId] = useState("");
@@ -28,11 +38,24 @@ export default function TakeQuiz() {
   const [view, setView] = useState([]);
 
   /////to get the quiz from db using ID\\\\\\\
+  // to store the returned message from db
   const getQuiz = async () => {
     try {
       const res = await fetch(`${globalState.api.link}/quizes/${id}`);
       const resJson = await res.json();
       setQuiz(resJson);
+      if (res.status === 200 && resJson.message === undefined) {
+        setShow(true);
+      } else if (res.status === 200 && resJson.message !== undefined) {
+        dispatch(setMessage(resJson.message));
+        setShow(false);
+        enableBtn(
+          document.getElementById("start-btn"),
+          "Start",
+          colors.green.success
+        );
+        setRender(!render);
+      }
     } catch (error) {
       console.log("error: ", error);
     }
@@ -248,59 +271,65 @@ export default function TakeQuiz() {
         marginLeft: "1%",
         borderRadius: "30",
         padding: "3%",
-        // backgroundColor: "#eee",
-        // borderStyle: "solid",
-        // borderWidth: "1px",
-        // boxShadow: "5px 5px 10px",
       }}
     >
+      {/* show alert if found */}
+      {globalState.variables.message && (
+        <Alert>{globalState.variables.message}</Alert>
+      )}
+
       {/* to take the quiz ID */}
       <div className="row">
-        <div className="col-3"></div>
-        <div className="col-sm-2 col-12 fs-4 fw-bold">Quiz ID </div>
-        <div className="col-sm-3 col-12 fs-5">
-          <input
-            type={"text"}
-            style={{ width: "100%", borderWidth: "1.5px" }}
-            value={id}
-            onChange={(e) => {
-              setId(e.target.value);
-              if (id !== "") {
-                document.getElementById("start-btn").innerHTML = "Start";
-                document
-                  .getElementById("start-btn")
-                  .classList.remove("btn-secondary");
-                document
-                  .getElementById("start-btn")
-                  .classList.add("btn-success");
-              }
-            }}
-          />
-        </div>
-        <div className="col-4"></div>
-        <div className="row ">
-          <div className="col"></div>
-          <div className="col-sm-4 col-12 d-flex justify-content-center">
-            <div
-              className="btn btn-success mt-5  fs-5 fw-bolder"
-              id="start-btn"
-              style={{ width: "80%" }}
-              onClick={(e) => {
-                if (id === "") {
-                  e.target.innerHTML = "ID can't be empty";
-                  e.target.classList.remove("btn-success");
-                  e.target.classList.add("btn-secondary");
-                } else {
-                  getQuiz();
-                  quizView();
-                  setShow(true);
-                }
-              }}
-            >
-              Start
+        {!show && (
+          <>
+            <div className="col-3"></div>
+            <div className="col-sm-2 col-12 fs-4 fw-bold">Quiz ID </div>
+            <div className="col-sm-3 col-12 fs-5">
+              <input
+                type={"text"}
+                className="text-center"
+                style={{ width: "100%", borderWidth: "1.5px" }}
+                value={id}
+                onChange={(e) => {
+                  setId(e.target.value);
+                }}
+                onMouseEnter={() => {
+                  enableBtn(
+                    document.getElementById("start-btn"),
+                    "Start",
+                    colors.green.success
+                  );
+                }}
+              />
             </div>
-          </div>
-          <div className="col"></div>
+            <div className="col-4"></div>
+          </>
+        )}
+        <div className="row ">
+          {!show && (
+            <>
+              <div className="col"></div>
+              <div className="col-sm-4 col-12 d-flex justify-content-center">
+                <div
+                  className="btn btn-success mt-5  fs-5 fw-bolder"
+                  id="start-btn"
+                  style={{ width: "80%" }}
+                  onClick={(e) => {
+                    if (id === "") {
+                      disableBtn(e.target, "ID can't be empty");
+                    } else {
+                      disableBtn(e.target);
+                      getQuiz();
+                      quizView();
+                    }
+                  }}
+                >
+                  Start
+                </div>
+              </div>
+              <div className="col"></div>
+            </>
+          )}
           {show && id !== "" && (
             <>
               <div>{view}</div>
