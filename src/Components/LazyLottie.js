@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 
-function LazyLottie() {
+export default function LazyLottie() {
   const animationContainer = useRef(null);
 
   useEffect(() => {
@@ -29,5 +29,3 @@ function LazyLottie() {
     ></div>
   );
 }
-
-export default LazyLottie;

@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { colors } from "../config";
 import { disableBtn } from "../myModules";
 
 export default function CreateQuiz() {
@@ -110,14 +108,9 @@ export default function CreateQuiz() {
         borderRadius: "30px",
         padding: "3%",
         backgroundColor: "#fff",
-        // borderStyle: "solid",
-        // borderWidth: "1px",
         boxShadow: "3px 3px 8px",
       }}
     >
-      <Helmet>
-        <style>{"body { background-color: #fff }"}</style>
-      </Helmet>
       {/* add the Question */}
       <div className="row m-3 p-1">
         <div className="col-sm-2 col-12 text-center fs-4 fw-bold">Question</div>

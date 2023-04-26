@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
 
 import { setMessage } from "../store/variablesSlice";
 
@@ -37,7 +36,7 @@ export default function TakeQuiz() {
   //to store the quiz view
   const [view, setView] = useState([]);
 
-  /////to get the quiz from db using ID\\\\\\\
+  ///function to get the quiz from db using ID\\\\\\\
   // to store the returned message from db
   const getQuiz = async () => {
     try {
@@ -381,11 +380,3 @@ export default function TakeQuiz() {
     </div>
   );
 }
-
-const styles = {
-  choice: {
-    borderLeftStyle: "solid",
-    borderRightStyle: "solid",
-    borderWidth: "1px",
-  },
-};

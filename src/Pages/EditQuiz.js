@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { enableBtn, disableBtn } from "../myModules";
+import { setMessage } from "../store/variablesSlice";
+import Alert from "../Components/Alert";
 
 export default function EditQuiz() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   //define global state
   const globalState = useSelector((state) => state);
@@ -23,18 +27,6 @@ export default function EditQuiz() {
   const [quiz, setQuiz] = useState({});
   //to display the quiz view
   const [showView, setShowView] = useState(false);
-
-  //to show witch answer is checked
-  const [chosenA, setChosenA] = useState(false);
-  const [chosenB, setChosenB] = useState(false);
-  const [chosenC, setChosenC] = useState(false);
-  const [chosenD, setChosenD] = useState(false);
-
-  //to store messages from backend
-  const [message, setMessage] = useState("");
-
-  //to store wether hovering over x in alert view
-  const [isHovered, setIsHovered] = useState(false);
 
   //get request to get quiz with an id
   const getQuiz = async () => {
@@ -55,7 +47,6 @@ export default function EditQuiz() {
 
   //put request to edit a quiz using id
   const editQuiz = async () => {
-    const data = {};
     try {
       const res = await fetch(
         `${globalState.api.link}/editQuiz/644405307aca22ffb823e83c`,
@@ -84,30 +75,8 @@ export default function EditQuiz() {
       }}
     >
       {/* show warnings */}
-      {message !== "" && (
-        <div className="alert alert-danger d-flex justify-content-center fs-5 mx-1 mx-sm-5 row">
-          <label className="col-sm-11 col-10 d-flex justify-content-center">
-            {message}
-          </label>
-          <div className="col-sm-1 col-2 d-flex justify-content-center align-items-center ">
-            <div
-              className="d-flex justify-content-center align-items-center fs-sm-5 fs-6 fw-semibold rounded-circle"
-              style={{
-                backgroundColor: isHovered ? "#ff6C64" : "pink",
-                cursor: isHovered ? "pointer" : "default",
-                width: "40%",
-              }}
-              onMouseEnter={(e) => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={() => {
-                setMessage("");
-                setIsHovered(false);
-              }}
-            >
-              X
-            </div>
-          </div>
-        </div>
+      {globalState.variables.message && (
+        <Alert>{globalState.variables.message}</Alert>
       )}
 
       {/* get required data from user */}
@@ -256,17 +225,22 @@ export default function EditQuiz() {
             className="col-sm-4 col-11 btn btn-primary m-2 fw-bold fs-5"
             onClick={(e) => {
               disableBtn(e.target);
-              getQuiz().then((returned) => {
-                const data = returned.data;
-                const resMessage = returned.message;
-                if (resMessage !== undefined) {
-                  setMessage(resMessage);
-                } else {
-                  setMessage("");
-                  setShowView(true);
-                }
+              if (id !== "") {
+                getQuiz().then((returned) => {
+                  const resMessage = returned.message;
+                  if (resMessage !== undefined) {
+                    // setMessage(resMessage);
+                    dispatch(setMessage(resMessage));
+                  } else {
+                    setMessage("");
+                    setShowView(true);
+                  }
+                  enableBtn(e.target, "Get quiz", "#3B71CA");
+                });
+              } else {
+                dispatch(setMessage("id can't be empty"));
                 enableBtn(e.target, "Get quiz", "#3B71CA");
-              });
+              }
             }}
           >
             Get quiz

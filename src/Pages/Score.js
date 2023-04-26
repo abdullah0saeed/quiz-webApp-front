@@ -21,8 +21,7 @@ export default function Score() {
     quizView();
   }, []);
 
-  /////function to set the view\\\\\
-
+  ///function to set the view\\\\\
   const quizView = () => {
     var row = [];
 
@@ -255,11 +254,3 @@ export default function Score() {
     </div>
   );
 }
-
-const styles = {
-  choice: {
-    borderLeftStyle: "solid",
-    borderRightStyle: "solid",
-    borderWidth: "1px",
-  },
-};
