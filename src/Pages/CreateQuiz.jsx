@@ -321,9 +321,9 @@ export default function CreateQuiz() {
               role={alert}
               style={{ color: "#000" }}
             >
-              Quiz ID :--> {quizId}
+              {"Quiz ID :-->"} {quizId}
               <br />
-              Password :--> {password}
+              {"Password :-->"} {password}
             </div>
           )}
         </div>
