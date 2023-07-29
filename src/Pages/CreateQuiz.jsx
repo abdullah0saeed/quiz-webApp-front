@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Modal, ModalBody, ModalDialog } from "react-bootstrap";
 
+import { setMessage } from "../store/variablesSlice";
 import { disableBtn } from "../myModules";
+import Alert from "../Components/Alert";
 
 export default function CreateQuiz() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //define global state
   const globalState = useSelector((state) => state);
@@ -56,24 +59,38 @@ export default function CreateQuiz() {
 
   //function to add a question to the quiz array
   const addQuestion = async () => {
-    setQ([...q, inQ]);
-    setA([...a, inA]);
-    setB([...b, inB]);
-    setC([...c, inC]);
-    setD([...d, inD]);
-    setCorrA([...corrA, corrInA]);
-    setCorrB([...corrB, corrInB]);
-    setCorrC([...corrC, corrInC]);
-    setCorrD([...corrD, corrInD]);
-    setInQ("");
-    setInA("");
-    setInB("");
-    setInC("");
-    setInD("");
-    setCorrInA("false");
-    setCorrInB("false");
-    setCorrInC("false");
-    setCorrInD("false");
+    if (
+      inQ === "" ||
+      (corrInA === "false" &&
+        corrInB === "false" &&
+        corrInC === "false" &&
+        corrInD === "false") ||
+      (inA === "" && inB === "" && inC === "" && inD === "")
+    ) {
+      dispatch(
+        setMessage("Enter a question and answers, and choose correct answer!")
+      );
+    } else {
+      dispatch(setMessage(""));
+      setQ([...q, inQ]);
+      setA([...a, inA]);
+      setB([...b, inB]);
+      setC([...c, inC]);
+      setD([...d, inD]);
+      setCorrA([...corrA, corrInA]);
+      setCorrB([...corrB, corrInB]);
+      setCorrC([...corrC, corrInC]);
+      setCorrD([...corrD, corrInD]);
+      setInQ("");
+      setInA("");
+      setInB("");
+      setInC("");
+      setInD("");
+      setCorrInA("false");
+      setCorrInB("false");
+      setCorrInC("false");
+      setCorrInD("false");
+    }
   };
 
   //function to add the last question to the quiz array then send the quiz to the database
@@ -108,6 +125,11 @@ export default function CreateQuiz() {
 
   return (
     <>
+      {/* show warnings */}
+      {globalState.variables.message && (
+        <Alert style={{ marginTop: 10 }}>{globalState.variables.message}</Alert>
+      )}
+
       {/* show added questions */}
       {q.length !== 0 && (
         <div

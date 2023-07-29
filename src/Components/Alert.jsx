@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setMessage } from "../store/variablesSlice";
 
-export default function Alert({ children = "" }) {
+export default function Alert({ children = "", style }) {
   const globalMessage = useSelector((state) => state.variables.message);
   const dispatch = useDispatch();
 
@@ -11,7 +11,10 @@ export default function Alert({ children = "" }) {
   return (
     <>
       {globalMessage && (
-        <div className="alert alert-danger d-flex justify-content-center fs-5 mx-1 mx-sm-5 row">
+        <div
+          className="alert alert-danger d-flex justify-content-center fs-5 mx-1 mx-sm-5 row"
+          style={style}
+        >
           <label className="col-sm-11 col-10 d-flex justify-content-center">
             {children}
           </label>
