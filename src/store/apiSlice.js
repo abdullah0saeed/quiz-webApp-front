@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// https://quiz-web-backend-server.onrender.com
+// https://registration-system-api.onrender.com
 // http://localhost:7000
 
 const initialState = { link: "https://registration-system-api.onrender.com" };
